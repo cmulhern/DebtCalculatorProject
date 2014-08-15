@@ -1,0 +1,75 @@
+@import 'bootstrap';
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+.body {
+	min-width: 2000px;
+}
+.btn {
+	margin-top: 2px;
+}
+.labelContainer {
+	float: left;
+	position: relative;
+	text-align: justify;
+	margin: 5px;
+	width: 2000px;
+}
+
+.labels {
+ 	width: 150px;
+ 	display: inline-block;
+ 	vertical-align: top;
+ 	margin-left: 5px;
+ }
+
+.calculator {
+	position: relative;
+	float: left;
+	padding: 2px;
+	width: 680px;
+	border: 2px solid black;
+	margin: 5px;
+}
+
+#response {
+	position: relative;
+	float: left;
+	width: 25%;
+	border: 2px solid black;
+	float: left;
+	margin: 5px;
+	padding: 2px;
+}
+
+#inline {
+	text-align: center;
+	color: red;
+	font-size: 20px;
+}
+
+#outline {
+	text-align: center;
+}
+
+#interest {
+	color: red;
+}
+
+
+
+
