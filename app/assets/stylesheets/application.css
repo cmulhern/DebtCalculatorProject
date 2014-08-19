@@ -11,11 +11,17 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ *
+ *= require jquery-ui
  *= require_self
+ *= require_tree .
+ *
  */
 
-
+#tabs {
+  float:left;
+  position: relative;
+}
 .btn {
 	margin-top: 2px;
 }
@@ -23,29 +29,30 @@
 	float: left;
 	position: relative;
 	text-align: justify;
-	margin: 5px;
-	width: 2000px;
+	margin: 2px;
+	width: 1000px;
 }
 
 .labels {
  	width: 150px;
  	display: inline-block;
  	vertical-align: top;
- 	margin-left: 5px;
+ 	margin: 10px;
+ 	
  }
-
+ 
 .calculator {
 	position: relative;
 	float: left;
 	padding: 2px;
-	width: 680px;
+	width: 750px;
 	border: 2px solid black;
 	margin: 5px;
 }
 
-#response {
+.response {
 	position: relative;
-	float: left;
+	float: right;
 	width: 25%;
 	border: 2px solid black;
 	float: left;
@@ -66,6 +73,10 @@
 #interest {
 	color: red;
 }
+
+
+
+
 
 
 

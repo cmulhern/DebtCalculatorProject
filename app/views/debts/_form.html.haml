@@ -1,0 +1,22 @@
+%div.labelContainer
+  %div.labels Name
+  %div.labels &nbsp;&nbsp;&nbsp;Amount($)
+  %div.labels Interest Rate(%)
+  %div.labels Monthly Payment($)  
+
+= form_tag debts_path, :method => :post, :remote => :true, :class => 'calculator' do
+  = hidden_field :container, :num, :class => "hiddenField"
+  %div.input#row1
+    = text_field :debt1, :name, :class => "nameField", :id => "debt1_name"
+        
+    = number_field :debt1, :amount, :min => 0.00, :step => 'any', :class => "field amountField", :id => "debt1_amount"
+       
+    = number_field :debt1, :interest, :min => 0.00, :max => 150.00, :step => 'any', :class => "field interestField", :id => "debt1_interest"
+       
+    = number_field :debt1, :payment, :class => "field paymentField", :id => "debt1_payment"
+        
+    <button type = "button" class = "btn btn-xs btn-danger deleteRow"> Delete </button>
+    
+  %div.buttonContainer  
+    = submit_tag 'Calculate', :class => "submit btn btn-primary"
+    <button type = "button" class = "addRow btn btn-primary"> Add Row </button>

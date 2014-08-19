@@ -9,9 +9,9 @@ class DebtsController < ApplicationController
   def create
     months = 0
     interest = 0.00
+    puts params
     params.each do |key, val|      
       if /debt/ =~ key
-        puts key
         rate = (params[key][:interest].to_d)/100
         principle = params[key][:amount].to_d
         payment = params[key][:payment].to_d
@@ -26,6 +26,7 @@ class DebtsController < ApplicationController
     @month = Date::MONTHNAMES[date.month] 
     @year = date.year
     @interest = interest.round
+    @planNumber = params[:container][:num]
     render :layout => false
   end
   
