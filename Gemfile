@@ -9,10 +9,10 @@ gem 'jquery-ui-rails'
 gem 'rails', '4.1.0.beta1'
 
 # Use sqlite3 as the database for Active Record
-group: :production do
+group :production do
   gem 'pg'
 end
-group: :development do
+group :development do
   gem 'sqlite3'
 end
 
