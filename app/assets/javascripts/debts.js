@@ -16,6 +16,8 @@ $(document).ready(function() {
 	
 	//hide the div that will contain the response
 	$(".response").hide();
+	$(".compare").hide();
+
 	
 	//whenever a key press is detected in a field, check that ALL other fields are filled
 	$(".field").keyup(function() {
@@ -24,10 +26,18 @@ $(document).ready(function() {
 	}).keyup();
 
 	//display the answer in the response div
-	$(".calculator").on('ajax:success', function(event, data, status, xhr) {
-		var num = $(data).find("div.answerContainer").first().attr('id');
+	$(".calculator").on('ajax:success', function(event, data, status, xhr) {		
+		var response = $(data).find("div.answerContainer").first();		
+		var num = response.attr('id');		
 		$("#response" + num).html(data);
 		$("#response" + num).show();
+		
+		var tableData = $(data).find("div.tableContents").first();
+		$("#row1 > .interest").html(tableData.find("#interest").first());
+		$("#row1 > .months").html(tableData.find("#months").first());
+		
+		$(".compare").show();
+		
 	});
 	
 	$(".submit").click(function() {

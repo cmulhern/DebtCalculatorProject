@@ -23,6 +23,7 @@ class DebtsController < ApplicationController
       end   
     end
     date = Date.today + months.months
+    @months = months
     @month = Date::MONTHNAMES[date.month] 
     @year = date.year
     @interest = interest.round

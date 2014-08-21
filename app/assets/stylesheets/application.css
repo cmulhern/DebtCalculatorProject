@@ -21,9 +21,14 @@
 #tabs {
   float:left;
   position: relative;
+  width: 1500px;
 }
 .btn {
 	margin-top: 2px;
+}
+
+.tableContents {
+  display: none;
 }
 .labelContainer {
 	float: left;
