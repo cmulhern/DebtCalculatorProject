@@ -7,13 +7,13 @@
 = form_tag debts_path, :method => :post, :remote => :true, :class => 'calculator' do
   = hidden_field :container, :num, :class => "hiddenField"
   %div.input#row1
-    = text_field :debt1, :name, :class => "nameField", :id => "debt1_name"
+    = text_field :debt1, :name, :class => "nameField", :id => "name1"
         
-    = number_field :debt1, :amount, :min => 0.00, :step => 'any', :class => "field amountField", :id => "debt1_amount"
+    = number_field :debt1, :amount, :min => 0.00, :step => 'any', :class => "field amountField", :id => "amount1"
        
-    = number_field :debt1, :interest, :min => 0.00, :max => 150.00, :step => 'any', :class => "field interestField", :id => "debt1_interest"
+    = number_field :debt1, :interest, :min => 0.00, :max => 150.00, :step => 'any', :class => "field interestField", :id => "interest1"
        
-    = number_field :debt1, :payment, :class => "field paymentField", :id => "debt1_payment"
+    = number_field :debt1, :payment, :class => "field paymentField", :id => "payment1"
         
     <button type = "button" class = "btn btn-xs btn-danger deleteRow"> Delete </button>
     

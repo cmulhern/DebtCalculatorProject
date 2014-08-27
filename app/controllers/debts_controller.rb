@@ -9,7 +9,6 @@ class DebtsController < ApplicationController
   def create
     months = 0
     interest = 0.00
-    puts params
     params.each do |key, val|      
       if /debt/ =~ key
         rate = (params[key][:interest].to_d)/100

@@ -16,7 +16,8 @@ $(document).ready(function() {
 	
 	//hide the div that will contain the response
 	$(".response").hide();
-	$(".compare").hide();
+	$(".comparisonTable").hide();
+	$(".row").hide();
 
 	
 	//whenever a key press is detected in a field, check that ALL other fields are filled
@@ -33,16 +34,44 @@ $(document).ready(function() {
 		$("#response" + num).show();
 		
 		var tableData = $(data).find("div.tableContents").first();
-		$("#row1 > .interest").html(tableData.find("#interest").first());
-		$("#row1 > .months").html(tableData.find("#months").first());
+		$("#row" + num + "> .interest").html(tableData.find("#interest").first());
+		$("#row" + num + "> .months").html(tableData.find("#months").first());
+		$(".row#row" + num).show();
 		
-		$(".compare").show();
+		$(this).find(".paymentField").each( function() {
+			$(this).removeClass("errorField");
+		});
+		
+		$(".comparisonTable").show();
+		$(".row#header").show();
 		
 	});
 	
-	$(".submit").click(function() {
-		var container = $(this).closest(".formContainer").attr('id');
-		$("#" + container).find(".hiddenField").first().val(container.slice(-1));
+	$(".submit").click(function(event) {
+		var containerNum = $(this).closest(".formContainer").attr('id').slice(-1);
+
+		var invalid = false;
+		$(this).closest(".formContainer").find(".paymentField").each( function() {
+			var rowNum = $(this).attr('id').slice(-1);			
+			var payment = $(this).val();
+			var interest = $("#interest" + rowNum).val() / 100;
+			var amount = $("#amount" + rowNum).val();
+			if ((interest * amount) > payment) {
+				$(this).addClass("errorField");
+				invalid = true;
+			}
+		});
+		
+		if(invalid) {
+			event.preventDefault();
+			$(this).prop('disabled', true);			
+			$("#response" + containerNum).html("One or more of your monthly payments is too low!");
+			$("#response" + containerNum).show();
+		}
+		else {
+			$("#" + container).find(".hiddenField").first().val(container.slice(-1));
+		}
+		
 	});
 	
 	$(".addRow").click(function() {
@@ -51,17 +80,21 @@ $(document).ready(function() {
 		var newRow = $(".input").first().clone(true).attr('id', 'row' + nextNum);
 		
 		//give the newly create row unique attributes
-		newRow.find(".nameField").attr('id', 'debt' + nextNum + '_name').attr('name', 'debt' + nextNum + '[name]').val('');
-		newRow.find(".amountField").attr('id', 'debt' + nextNum + '_amount').attr('name', 'debt' + nextNum + '[amount]').val('');
-		newRow.find(".interestField").attr('id', 'debt' + nextNum + '_interest').attr('name', 'debt' + nextNum + '[interest]').val('');
-		newRow.find(".paymentField").attr('id', 'debt' + nextNum + '_payment').attr('name', 'debt' + nextNum + '[payment]').val('');
+		newRow.find(".nameField").attr('id', 'name' + nextNum).attr('name', 'debt' + nextNum + '[name]').val('');
+		newRow.find(".amountField").attr('id', 'amount' + nextNum).attr('name', 'debt' + nextNum + '[amount]').val('');
+		newRow.find(".interestField").attr('id', 'interest'+ nextNum).attr('name', 'debt' + nextNum + '[interest]').val('');
+		newRow.find(".paymentField").attr('id', 'payment' + nextNum).attr('name', 'debt' + nextNum + '[payment]').removeClass("errorField").val('');
+		
 		newRow.insertBefore($(this).closest(".buttonContainer"));		
 		
 		//now there are at least two rows, so the delete function can be enabled
-		$(".deleteRow").prop('disabled', false);
+		$(this).closest(".formContainer").find(".deleteRow").each(function() {
+			$(this).prop('disabled', false);
+		});
+		
 		
 		//there is now at least one empty row, so the form cannot be submitted
-		$(".submit").prop('disabled', true);
+		$(this).prev().prop('disabled', true);
 	});
 	
 	$(".deleteRow").on('click',function(event) {	
@@ -69,7 +102,7 @@ $(document).ready(function() {
 		$(this).closest(".input").remove();	
 		
 		if($("#" + container).find(".input").length === 1) {
-			$(".deleteRow").prop('disabled', true);
+			$("#" + container).find(".deleteRow").first().prop('disabled', true);
 		}
 		//check if submission is now valid (i.e. the deleted row was the only one with an empty field)
 		checkFields(container);		

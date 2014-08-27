@@ -29,31 +29,32 @@
   %div.formContainer#container5
     = render "form"
     %div.response#response5
-  
-%table.compare
+
+%table.comparisonTable
+  %caption Compare your plans
   %thead
-    %tr
+    %tr.row#header
       %th 
       %th Interest Paid($)
       %th Number of Months 
-  %tbody
-    %tr#row1
+  %tbody.compareBody
+    %tr.row#row1
       %td Plan 1
       %td.interest
       %td.months
-    %tr#row2
+    %tr.row#row2
       %td Plan 2
       %td.interest
       %td.months
-    %tr#row3
+    %tr.row#row3
       %td Plan 3
       %td.interest
       %td.months
-    %tr#row4
+    %tr.row#row4
       %td Plan 4
       %td.interest
       %td.months
-    %tr#row5
+    %tr.row#row5
       %td Plan 5
       %td.interest
       %td.months
