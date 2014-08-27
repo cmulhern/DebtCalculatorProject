@@ -56,4 +56,4 @@ gem 'sdoc',          group: :doc, require: false
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'tzinfo'
 
-ruby '2.1.2'
+

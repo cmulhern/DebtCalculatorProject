@@ -48,14 +48,14 @@ $(document).ready(function() {
 	});
 	
 	$(".submit").click(function(event) {
-		var containerNum = $(this).closest(".formContainer").attr('id').slice(-1);
-
+		var form = $(this).closest(".formContainer");
+		var containerNum = form.attr('id').slice(-1);	
 		var invalid = false;
-		$(this).closest(".formContainer").find(".paymentField").each( function() {
-			var rowNum = $(this).attr('id').slice(-1);			
+		form.find(".paymentField").each( function() {
+			var rowNum = $(this).attr('id').slice(-1);		
 			var payment = $(this).val();
-			var interest = $("#interest" + rowNum).val() / 100;
-			var amount = $("#amount" + rowNum).val();
+			var interest = form.find("#interest" + rowNum).first().val() / 100;
+			var amount = form.find("#amount" + rowNum).first().val();
 			if ((interest * amount) > payment) {
 				$(this).addClass("errorField");
 				invalid = true;
@@ -69,9 +69,8 @@ $(document).ready(function() {
 			$("#response" + containerNum).show();
 		}
 		else {
-			$("#" + container).find(".hiddenField").first().val(container.slice(-1));
+			form.find(".hiddenField").first().val(containerNum);
 		}
-		
 	});
 	
 	$(".addRow").click(function() {
