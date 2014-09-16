@@ -47,6 +47,8 @@ $(document).ready(function() {
 		
 	});
 	
+	//Checks to make sure that the user is making a high enough monthly payment before
+	//the AJAX sumbission continues. 
 	$(".submit").click(function(event) {
 		var form = $(this).closest(".formContainer");
 		var containerNum = form.attr('id').slice(-1);	
